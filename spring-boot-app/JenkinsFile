@@ -47,7 +47,7 @@ pipeline {
     }
     stage('Update Deployment File') {
         environment {
-            GIT_REPO_NAME = "Jenkins-Zero-To-Hero"
+            GIT_REPO_NAME = "Jenkins-CICD-Project"
             GIT_USER_NAME = "srihari-2908"
         }
 		steps {
@@ -69,6 +69,7 @@ pipeline {
             
             # Add and commit the changes
             git add K8-CICD-Manifests/deployment.yml
+			git add K8-CICD-Manifests/service.yml
             git commit -m "Update deployment image to version ${BUILD_NUMBER}"
             git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
         '''
